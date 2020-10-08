@@ -139,6 +139,9 @@
 
     public void Cambio()
     {
-        producto.ValorInventario = producto.Costo * producto.Existencia;       
+        string costo = (producto.Costo).ToString("N2");
+        producto.Costo = Convert.ToDecimal(costo); 
+        string valor = (producto.Costo * producto.Existencia).ToString("N2");
+        producto.ValorInventario = Convert.ToDecimal(valor);       
     }
 }

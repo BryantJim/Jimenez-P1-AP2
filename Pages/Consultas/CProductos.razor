@@ -40,6 +40,7 @@
                                 <th>Existencia</th>
                                 <th>Costo</th>
                                 <th>Valor Inventario</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -49,8 +50,9 @@
                                     <td>@item.ProductoId</td>
                                     <td>@item.Descripcion</td>
                                     <td>@item.Existencia</td>
-                                    <td>@item.Costo</td>
-                                    <td>@item.ValorInventario</td>
+                                    <td>@item.Costo.ToString("N2")</td>
+                                    <td>@item.ValorInventario.ToString("N2")</td>
+                                    <td><a href="@($"Productos/{item.ProductoId}")">Ver</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -61,6 +63,7 @@
 
 @code {
     public List<Productos> ListaProductos = new List<Productos>();
+    
 
     public string Filtro { get; set; }
 
@@ -174,7 +177,8 @@
 
         foreach(var item in ListaProductos)
         {
-            MontoTotal += item.ValorInventario;
+            string valor = item.ValorInventario.ToString("N2");
+            MontoTotal += Convert.ToDecimal(valor);
         }
     }
 }
